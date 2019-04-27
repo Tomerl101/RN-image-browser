@@ -4,7 +4,7 @@ import { FETCH_IMAGES_START, FETCH_IMAGES_SUCCESS, FETCH_IMAGES_ERROR } from './
 
 const initialState = {
   images: dummyData,
-  loading: false,
+  isLoading: false,
   error: ''
 }
 export default function reducer(state = initialState, action) {
@@ -12,21 +12,21 @@ export default function reducer(state = initialState, action) {
     case FETCH_IMAGES_START: {
       return {
         ...state,
-        loading: true,
+        isLoading: true,
         error: ''
       }
     }
     case FETCH_IMAGES_SUCCESS: {
       return {
         ...state,
-        data: action.data,
-        loading: false
+        images: action.payload,
+        isLoading: false
       }
     }
     case FETCH_IMAGES_ERROR: {
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         error: action.error
       }
     }

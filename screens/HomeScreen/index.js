@@ -12,8 +12,8 @@ const HomeTabNavigator = createMaterialTopTabNavigator({
   'List View': ListViewScreen
 })
 
-HomeTabNavigator.navigationOptions = ({ navigation }) => ({
-  header: props => (
+HomeTabNavigator.navigationOptions = () => ({
+  header: () => (
     <View>
       <MainHeader />
       <SearchBar />

@@ -4,7 +4,6 @@ import { AppLoading, Asset, Font, Icon } from 'expo'
 import { Provider } from 'react-redux'
 import store from './redux/store'
 import AppNavigator from './navigation/AppNavigator'
-import MainHeader from './components/MainHeader'
 
 const styles = StyleSheet.create({
   container: {

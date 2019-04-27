@@ -7,10 +7,12 @@ function MainHeader(props) {
     <Header
       placement="center"
       leftComponent={
-        <Button
-          onPress={() => props.navigation.goBack()}
-          icon={<Icon name="arrow-back" color="white" />}
-        />
+        props.navigation.state.routeName == 'HomeScreen' ? null : (
+          <Button
+            onPress={() => props.navigation.goBack()}
+            icon={<Icon name="arrow-back" color="white" />}
+          />
+        )
       }
       centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
       rightComponent={{ icon: 'favorite', color: '#fff' }}

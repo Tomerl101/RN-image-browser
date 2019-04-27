@@ -4,11 +4,14 @@ import { connect } from 'react-redux'
 import ImageCard from '../../../components/ImageCard'
 
 class GridViewScreen extends React.Component {
-  handleOnPress = () => this.props.navigation.navigate('ImageScreen')
+  handleOnPress = ({ id, webformatURL }) =>
+    this.props.navigation.navigate('ImageScreen', { id, uri: webformatURL })
 
   keyExtractor = item => item.id
 
-  renderItem = ({ item }) => <ImageCard uri={item.webformatURL} onPress={this.handleOnPress} />
+  renderItem = ({ item }) => (
+    <ImageCard uri={item.webformatURL} onPress={() => this.handleOnPress(item)} />
+  )
 
   render() {
     return (

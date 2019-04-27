@@ -5,22 +5,23 @@ import {
   FETCH_IMAGES_ERROR
 } from './actionsType'
 
+import fetchImagesRequest from '../service/fetchImages'
+
 export const likeImage = payload => ({
   type: LIKE_IMAGE,
   payload
 })
 
-export function fetchImages(query) {
+export function fetchImages(searchQuery) {
   return async dispatch => {
-    // Initiate loading state
     dispatch({
       type: FETCH_IMAGES_START
     })
     try {
-      const result = await doFetchImages(query)
+      const { data } = await fetchImagesRequest(searchQuery)
       dispatch({
         type: FETCH_IMAGES_SUCCESS,
-        payload: result
+        payload: data
       })
     } catch (err) {
       dispatch({
