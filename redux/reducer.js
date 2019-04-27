@@ -1,9 +1,15 @@
 import dummyData from '../dummyData'
 
-import { FETCH_IMAGES_START, FETCH_IMAGES_SUCCESS, FETCH_IMAGES_ERROR } from './actionsType'
+import {
+  FETCH_IMAGES_START,
+  FETCH_IMAGES_SUCCESS,
+  FETCH_IMAGES_ERROR,
+  HYDRATE_FAVORITE_IMAGES
+} from './actionsType'
 
 const initialState = {
   images: dummyData,
+  favoriteImages: [],
   isLoading: false,
   error: ''
 }
@@ -28,6 +34,12 @@ export default function reducer(state = initialState, action) {
         ...state,
         isLoading: false,
         error: action.error
+      }
+    }
+    case HYDRATE_FAVORITE_IMAGES: {
+      return {
+        ...state,
+        favoriteImages: action.payload
       }
     }
     default: {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { AsyncStorage, FlatList } from 'react-native'
+import { FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import ImageCard from '../components/ImageCard'
 import EmptyState from '../components/EmptyState'
@@ -10,27 +10,16 @@ class FavoriteScreen extends React.Component {
     header: () => <MainHeader />
   }
 
-  state = {
-    favoriteImages: []
+  handleOnPress = item =>
+    this.props.navigation.navigate('ImageScreen', { id: item.id, uri: item.uri, isFavorite: true })
+
+  keyExtractor = item => `${item}`
+
+  renderItem = ({ item }) => {
+    return <ImageCard uri={item.uri} onPress={() => this.handleOnPress(item)} />
   }
-  async componentDidMount() {
-    try {
-      let favImagesList = await AsyncStorage.getItem('favImagesList')
-      favImagesList = JSON.parse(favImagesList)
-      this.setState({ favoriteImages: favImagesList })
-    } catch {
-      console.log('ERROR')
-    }
-  }
-
-  handleOnPress = item => this.props.navigation.navigate('ImageScreen', { uri: item })
-
-  keyExtractor = (item, index) => index
-
-  renderItem = ({ item }) => <ImageCard uri={item} onPress={() => this.handleOnPress(item)} />
-
   render() {
-    const { favoriteImages } = this.state
+    const { favoriteImages } = this.props.state
     return favoriteImages && favoriteImages.length > 0 ? (
       <FlatList
         data={favoriteImages}
@@ -46,7 +35,7 @@ class FavoriteScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    data: state
+    state
   }
 }
 

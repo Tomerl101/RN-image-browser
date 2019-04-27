@@ -1,15 +1,22 @@
 import {
-  LIKE_IMAGE,
+  ADD_IMAGE_TO_FAVORITE,
   FETCH_IMAGES_START,
   FETCH_IMAGES_SUCCESS,
-  FETCH_IMAGES_ERROR
+  FETCH_IMAGES_ERROR,
+  HYDRATE_FAVORITE_IMAGES
 } from './actionsType'
 
 import fetchImagesRequest from '../service/fetchImages'
 
-export const likeImage = payload => ({
-  type: LIKE_IMAGE,
-  payload
+export const addImageToFavorite = favoriteImage => ({
+  type: ADD_IMAGE_TO_FAVORITE,
+  payload: favoriteImage
+})
+
+//get favorite images from asyncStorage
+export const hydrateFavoriteImages = favoriteImages => ({
+  type: HYDRATE_FAVORITE_IMAGES,
+  payload: favoriteImages
 })
 
 export function fetchImages(searchQuery) {
