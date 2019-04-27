@@ -2,6 +2,7 @@ import React from 'react'
 import { FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import ImageCard from '../../../components/ImageCard'
+import EmptyState from '../../../components/EmptyState'
 
 class GridViewScreen extends React.Component {
   handleOnPress = ({ id, webformatURL }) =>
@@ -14,13 +15,16 @@ class GridViewScreen extends React.Component {
   )
 
   render() {
-    return (
+    const { images } = this.props.data
+    return images && images.hits.length > 0 ? (
       <FlatList
-        data={this.props.data.images.hits}
+        data={images.hits}
         renderItem={this.renderItem}
         keyExtractor={this.keyExtractor}
         numColumns={3}
       />
+    ) : (
+      <EmptyState />
     )
   }
 }
@@ -30,14 +34,6 @@ const mapStateToProps = state => {
     data: state
   }
 }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onDelete: id => {
-//       dispatch(deleteBookmark(id))
-//     }
-//   }
-// }
 
 export default connect(
   mapStateToProps,

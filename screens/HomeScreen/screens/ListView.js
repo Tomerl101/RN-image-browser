@@ -2,13 +2,15 @@ import React from 'react'
 import { ScrollView, TouchableOpacity } from 'react-native'
 import { ListItem } from 'react-native-elements'
 import { connect } from 'react-redux'
+import EmptyState from '../../../components/EmptyState'
 
 class GridViewScreen extends React.Component {
   handleOnPress = ({ id, webformatURL }) =>
     this.props.navigation.navigate('ImageScreen', { id, uri: webformatURL })
 
   render() {
-    return (
+    const { images } = this.props.data
+    return images && images.hits.length > 0 ? (
       <ScrollView>
         {this.props.data.images.hits.map(item => (
           <TouchableOpacity key={item.id} onPress={() => this.handleOnPress(item)}>
@@ -20,6 +22,8 @@ class GridViewScreen extends React.Component {
           </TouchableOpacity>
         ))}
       </ScrollView>
+    ) : (
+      <EmptyState />
     )
   }
 }
@@ -29,14 +33,6 @@ const mapStateToProps = state => {
     data: state
   }
 }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onDelete: id => {
-//       dispatch(deleteBookmark(id))
-//     }
-//   }
-// }
 
 export default connect(
   mapStateToProps,

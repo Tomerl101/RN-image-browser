@@ -14,8 +14,13 @@ function MainHeader(props) {
           />
         )
       }
-      centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-      rightComponent={{ icon: 'favorite', color: '#fff' }}
+      centerComponent={{ text: 'IMAGE BROWSER', style: { color: '#fff' } }}
+      rightComponent={
+        <Button
+          onPress={() => props.navigation.navigate('FavoritesScreen')}
+          icon={<Icon name="bookmark" color="white" />}
+        />
+      }
     />
   )
 }
