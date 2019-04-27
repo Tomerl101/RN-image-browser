@@ -1,9 +1,10 @@
-import { createAppContainer } from 'react-navigation'
+import { createAppContainer, createStackNavigator } from 'react-navigation'
+import HomeTabNavigator from '../screens/HomeScreen'
+import ImageScreen from '../screens/ImageScreen'
 
-import MainTabNavigator from './MainTabNavigator'
+const MainStackNavigator = createStackNavigator({
+  HomeScreen: HomeTabNavigator,
+  ImageScreen
+})
 
-export default createAppContainer(
-  // You could add another route here for authentication.
-  // Read more at https://reactnavigation.org/docs/en/auth-flow.html
-  MainTabNavigator
-)
+export default createAppContainer(MainStackNavigator)

@@ -1,9 +1,10 @@
 import React from 'react'
 import { Platform, StatusBar, StyleSheet, View } from 'react-native'
 import { AppLoading, Asset, Font, Icon } from 'expo'
+import { Provider } from 'react-redux'
+import store from './redux/store'
 import AppNavigator from './navigation/AppNavigator'
-import { SafeAreaView } from 'react-navigation'
-import { Header } from 'react-native-elements'
+import MainHeader from './components/MainHeader'
 
 const styles = StyleSheet.create({
   container: {
@@ -28,18 +29,13 @@ export default class App extends React.Component {
       )
     }
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <Provider store={store}>
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <Header
-            placement="center"
-            leftComponent={{ icon: 'backspace', color: '#fff' }}
-            centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-            rightComponent={{ icon: 'favorite', color: '#fff' }}
-          />
+          {/* <MainHeader /> */}
           <AppNavigator />
         </View>
-      </SafeAreaView>
+      </Provider>
     )
   }
 

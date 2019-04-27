@@ -6,7 +6,7 @@ export default class MySearchBar extends React.Component {
     search: ''
   }
 
-  updateSearch = search => {
+  handleUpdateSearch = search => {
     this.setState({ search })
   }
 
@@ -15,9 +15,10 @@ export default class MySearchBar extends React.Component {
 
     return (
       <SearchBar
+        round
         lightTheme
         placeholder="Type Here..."
-        onChangeText={this.updateSearch}
+        onChangeText={this.handleUpdateSearch}
         value={search}
       />
     )
