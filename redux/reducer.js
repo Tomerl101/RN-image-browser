@@ -1,4 +1,4 @@
-import dummyData from '../dummyData'
+// import dummyData from '../dummyData'
 
 import {
   FETCH_IMAGES_START,
@@ -8,12 +8,13 @@ import {
 } from './actionsType'
 
 const initialState = {
-  images: dummyData,
+  images: [],
   favoriteImages: [],
   isLoading: false,
   error: ''
 }
 export default function reducer(state = initialState, action) {
+  console.log('in reducer->', action.type)
   switch (action.type) {
     case FETCH_IMAGES_START: {
       return {

@@ -6,7 +6,7 @@ export default function ImageCard(props) {
   const { uri, onPress } = props
   return (
     <TouchableOpacity
-      style={{ backgroundColor: '#eee', height: 200, flex: 1, borderRadius: 5, margin: 5 }}
+      style={{ backgroundColor: '#eee', height: 180, flex: 1, borderRadius: 5, margin: 5 }}
       onPress={onPress}
     >
       <Image

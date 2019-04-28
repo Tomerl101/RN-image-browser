@@ -10,7 +10,7 @@ class GridViewScreen extends React.Component {
 
   render() {
     const { images } = this.props.data
-    return images && images.hits.length > 0 ? (
+    return images.hits && images.hits.length > 0 ? (
       <ScrollView>
         {this.props.data.images.hits.map(item => (
           <TouchableOpacity key={item.id} onPress={() => this.handleOnPress(item)}>

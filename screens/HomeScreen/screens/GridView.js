@@ -5,18 +5,21 @@ import ImageCard from '../../../components/ImageCard'
 import EmptyState from '../../../components/EmptyState'
 
 class GridViewScreen extends React.Component {
-  handleOnPress = ({ id, webformatURL }) =>
+  handleOnPress = ({ id, webformatURL }) => {
+    console.log('id-->', id)
     this.props.navigation.navigate('ImageScreen', { id, uri: webformatURL })
+  }
 
   keyExtractor = item => item.id
 
-  renderItem = ({ item }) => (
-    <ImageCard uri={item.webformatURL} onPress={() => this.handleOnPress(item)} />
-  )
+  renderItem = ({ item }) => {
+    const uri = item.webformatURL.replace('_640,_180')
+    return <ImageCard uri={uri} onPress={() => this.handleOnPress(item)} />
+  }
 
   render() {
     const { images } = this.props.data
-    return images && images.hits.length > 0 ? (
+    return images.hits && images.hits.length > 0 ? (
       <FlatList
         data={images.hits}
         renderItem={this.renderItem}

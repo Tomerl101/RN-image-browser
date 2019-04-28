@@ -11,9 +11,9 @@ class FavoriteScreen extends React.Component {
   }
 
   handleOnPress = item =>
-    this.props.navigation.navigate('ImageScreen', { id: item.id, uri: item.uri, isFavorite: true })
+    this.props.navigation.navigate('ImageScreen', { id: item.id, uri: item.uri })
 
-  keyExtractor = item => `${item}`
+  keyExtractor = item => `${item.id}`
 
   renderItem = ({ item }) => {
     return <ImageCard uri={item.uri} onPress={() => this.handleOnPress(item)} />

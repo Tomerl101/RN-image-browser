@@ -2,12 +2,18 @@ import React from 'react'
 import { View, ActivityIndicator, AsyncStorage } from 'react-native'
 import { Image, Button, Icon } from 'react-native-elements'
 import { connect } from 'react-redux'
+import find from 'lodash/find'
 import { hydrateFavoriteImages } from '../redux/actions'
 import MainHeader from '../components/MainHeader'
 
 class ImageScreen extends React.Component {
   static navigationOptions = {
     header: () => <MainHeader />
+  }
+
+  isFavoriteImage(imageId) {
+    const { favoriteImages } = this.props.state
+    return !!find(favoriteImages, { id: imageId })
   }
 
   handleOnLikePress = async () => {
@@ -27,8 +33,8 @@ class ImageScreen extends React.Component {
 
   render() {
     const { navigation } = this.props
-    const isFavorite = navigation.getParam('isFavorite')
     const imageUri = navigation.getParam('uri', 'NO-uri')
+    const imageId = this.props.navigation.getParam('id')
 
     return (
       <View
@@ -45,7 +51,7 @@ class ImageScreen extends React.Component {
           style={{ width: '100%', height: 400 }}
           PlaceholderContent={<ActivityIndicator />}
         />
-        {!isFavorite && (
+        {!this.isFavoriteImage(imageId) && (
           <Button
             type="clear"
             onPress={this.handleOnLikePress}
