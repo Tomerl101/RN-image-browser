@@ -3,7 +3,7 @@ import { AsyncStorage, Platform, StatusBar, StyleSheet, View } from 'react-nativ
 import { AppLoading, Asset, Font, Icon } from 'expo'
 import { connect } from 'react-redux'
 import AppNavigator from './navigation/AppNavigator'
-import { hydrateFavoriteImages } from './redux/actions'
+import { hydrateFavoriteImages, fetchImages } from './redux/actions'
 
 const styles = StyleSheet.create({
   container: {
@@ -18,13 +18,14 @@ class RootContainer extends React.Component {
   }
 
   async componentWillMount() {
-    const { doHydrateFavoriteImages } = this.props
+    const { doHydrateFavoriteImages, onSearch } = this.props
     let favoriteImages = await AsyncStorage.getItem('favImagesListV2')
     if (!favoriteImages) {
       favoriteImages = []
     } else {
       favoriteImages = JSON.parse(favoriteImages)
     }
+    onSearch('')
     doHydrateFavoriteImages(favoriteImages)
   }
 
@@ -72,6 +73,9 @@ const mapDispatchToProps = dispatch => {
   return {
     doHydrateFavoriteImages: favoriteImages => {
       dispatch(hydrateFavoriteImages(favoriteImages))
+    },
+    onSearch: searchQuery => {
+      dispatch(fetchImages(searchQuery))
     }
   }
 }
