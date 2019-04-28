@@ -23,6 +23,7 @@ class ImageScreen extends React.Component {
     const imageId = this.props.navigation.getParam('id')
     favoriteImages.push({ id: imageId, uri: imageUri })
     addImageToFavorites(favoriteImages)
+    alert('Image added to favorites')
     try {
       //persist data
       await AsyncStorage.setItem('favImagesListV2', JSON.stringify(favoriteImages))
