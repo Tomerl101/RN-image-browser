@@ -3,10 +3,10 @@ import { FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import ImageCard from '../../../components/ImageCard'
 import EmptyState from '../../../components/EmptyState'
+import PropTypes from 'prop-types'
 
 class GridViewScreen extends React.Component {
   handleOnPress = ({ id, webformatURL }) => {
-    console.log('id-->', id)
     this.props.navigation.navigate('ImageScreen', { id, uri: webformatURL })
   }
 
@@ -30,6 +30,10 @@ class GridViewScreen extends React.Component {
       <EmptyState />
     )
   }
+}
+
+GridViewScreen.propTypes = {
+  navigation: PropTypes.object
 }
 
 const mapStateToProps = state => {

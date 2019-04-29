@@ -1,20 +1,24 @@
 import React from 'react'
 import { TouchableOpacity, ActivityIndicator } from 'react-native'
+import PropTypes from 'prop-types'
 import { Image } from 'react-native-elements'
+import styles from './styles'
 
 export default function ImageCard(props) {
   const { uri, onPress } = props
   return (
-    <TouchableOpacity
-      style={{ backgroundColor: '#eee', height: 180, flex: 1, borderRadius: 5, margin: 5 }}
-      onPress={onPress}
-    >
+    <TouchableOpacity style={styles.imageCardContainerStyle} onPress={onPress}>
       <Image
         source={{ uri }}
-        style={{ height: '100%', width: '100%', borderRadius: 5 }}
+        style={styles.imageCardStyle}
         resizeMode="cover"
         PlaceholderContent={<ActivityIndicator />}
       />
     </TouchableOpacity>
   )
+}
+
+ImageCard.propTypes = {
+  onPress: PropTypes.func,
+  uri: PropTypes.string
 }

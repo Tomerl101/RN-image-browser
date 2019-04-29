@@ -1,5 +1,6 @@
 import React from 'react'
 import { Header, Button, Icon } from 'react-native-elements'
+import PropTypes from 'prop-types'
 import { withNavigation } from 'react-navigation'
 
 function MainHeader(props) {
@@ -7,7 +8,7 @@ function MainHeader(props) {
     <Header
       placement="center"
       leftComponent={
-        props.navigation.state.routeName == 'HomeScreen' ? null : (
+        props.navigation.state.routeName === 'HomeScreen' ? null : (
           <Button
             onPress={() => props.navigation.goBack()}
             icon={<Icon name="arrow-back" color="white" />}
@@ -23,6 +24,10 @@ function MainHeader(props) {
       }
     />
   )
+}
+
+MainHeader.propTypes = {
+  navigation: PropTypes.object
 }
 
 export default withNavigation(MainHeader)

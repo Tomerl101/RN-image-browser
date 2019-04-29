@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import ImageCard from '../components/ImageCard'
 import EmptyState from '../components/EmptyState'
 import MainHeader from '../components/MainHeader'
+import PropTypes from 'prop-types'
 
 class FavoriteScreen extends React.Component {
   static navigationOptions = {
@@ -31,6 +32,12 @@ class FavoriteScreen extends React.Component {
       <EmptyState />
     )
   }
+}
+
+FavoriteScreen.propTypes = {
+  navigation: PropTypes.object,
+  state: PropTypes.object,
+  favoriteImages: PropTypes.array
 }
 
 const mapStateToProps = state => {

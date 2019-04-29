@@ -4,11 +4,12 @@ import { AppLoading, Asset, Font, Icon } from 'expo'
 import { connect } from 'react-redux'
 import AppNavigator from './navigation/AppNavigator'
 import { hydrateFavoriteImages, fetchImages } from './redux/actions'
+import PropTypes from 'prop-types'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#eee'
   }
 })
 
@@ -78,6 +79,12 @@ const mapDispatchToProps = dispatch => {
       dispatch(fetchImages(searchQuery))
     }
   }
+}
+
+RootContainer.propTypes = {
+  skipLoadingScreen: PropTypes.bool,
+  doHydrateFavoriteImages: PropTypes.func,
+  onSearch: PropTypes.func
 }
 
 export default connect(

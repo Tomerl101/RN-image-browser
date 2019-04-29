@@ -1,5 +1,4 @@
 import {
-  ADD_IMAGE_TO_FAVORITE,
   FETCH_IMAGES_START,
   FETCH_IMAGES_SUCCESS,
   FETCH_IMAGES_ERROR,
@@ -7,11 +6,6 @@ import {
 } from './actionsType'
 
 import fetchImagesRequest from '../service/fetchImages'
-
-export const addImageToFavorite = favoriteImage => ({
-  type: ADD_IMAGE_TO_FAVORITE,
-  payload: favoriteImage
-})
 
 //get favorite images from asyncStorage
 export const hydrateFavoriteImages = favoriteImages => ({

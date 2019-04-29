@@ -1,5 +1,3 @@
-// import dummyData from '../dummyData'
-
 import {
   FETCH_IMAGES_START,
   FETCH_IMAGES_SUCCESS,
@@ -14,7 +12,6 @@ const initialState = {
   error: ''
 }
 export default function reducer(state = initialState, action) {
-  console.log('in reducer->', action.type)
   switch (action.type) {
     case FETCH_IMAGES_START: {
       return {

@@ -1,9 +1,11 @@
 import React from 'react'
-import { ScrollView, TouchableOpacity } from 'react-native'
-import { ListItem } from 'react-native-elements'
+import { ScrollView, TouchableOpacity, View, Text } from 'react-native'
+import { ListItem, Icon } from 'react-native-elements'
 import { connect } from 'react-redux'
 import EmptyState from '../../../components/EmptyState'
-
+import PropTypes from 'prop-types'
+import styles from '../../styles'
+import colors from '../../../constants/Colors'
 class GridViewScreen extends React.Component {
   handleOnPress = ({ id, webformatURL }) =>
     this.props.navigation.navigate('ImageScreen', { id, uri: webformatURL })
@@ -16,8 +18,17 @@ class GridViewScreen extends React.Component {
           <TouchableOpacity key={item.id} onPress={() => this.handleOnPress(item)}>
             <ListItem
               leftAvatar={{ source: { uri: item.previewURL } }}
-              title={item.tags}
-              subtitle={`Views ${item.views} Likes:${item.likes}`}
+              title={item.tags.toUpperCase()}
+              titleStyle={styles.titleStyle}
+              subtitle={
+                <View style={styles.subTitleContainerStyle}>
+                  <Icon name="visibility" size={14} color="grey" />
+                  <Text style={styles.subTitleTextStyle}>{`${item.views}`}</Text>
+                  <Icon type="ionicon" name="md-thumbs-up" size={14} color="grey" />
+                  <Text style={styles.subTitleTextStyle}>{`${item.likes}`}</Text>
+                </View>
+              }
+              subtitleStyle={{ color: colors.GREY }}
             />
           </TouchableOpacity>
         ))}
@@ -32,6 +43,11 @@ const mapStateToProps = state => {
   return {
     data: state
   }
+}
+
+GridViewScreen.propTypes = {
+  navigation: PropTypes.object,
+  data: PropTypes.object
 }
 
 export default connect(

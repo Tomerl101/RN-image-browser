@@ -2,6 +2,7 @@ import React from 'react'
 import { SearchBar } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { fetchImages } from '../redux/actions'
+import PropTypes from 'prop-types'
 
 class MySearchBar extends React.Component {
   state = {
@@ -26,6 +27,10 @@ class MySearchBar extends React.Component {
       />
     )
   }
+}
+
+MySearchBar.propTypes = {
+  onSearch: PropTypes.func
 }
 
 const mapDispatchToProps = dispatch => {

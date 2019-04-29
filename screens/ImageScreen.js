@@ -5,7 +5,8 @@ import { connect } from 'react-redux'
 import find from 'lodash/find'
 import { hydrateFavoriteImages } from '../redux/actions'
 import MainHeader from '../components/MainHeader'
-
+import PropTypes from 'prop-types'
+import styles from './styles'
 class ImageScreen extends React.Component {
   static navigationOptions = {
     header: () => <MainHeader />
@@ -38,18 +39,11 @@ class ImageScreen extends React.Component {
     const imageId = this.props.navigation.getParam('id')
 
     return (
-      <View
-        style={{
-          flex: 1,
-          alignContent: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'black'
-        }}
-      >
+      <View style={styles.imageScreenContainerStyle}>
         <Image
           resizeMode="contain"
           source={{ uri: imageUri }}
-          style={{ width: '100%', height: 400 }}
+          style={styles.imageScreenImageStyle}
           PlaceholderContent={<ActivityIndicator />}
         />
         {!this.isFavoriteImage(imageId) && (
@@ -62,6 +56,13 @@ class ImageScreen extends React.Component {
       </View>
     )
   }
+}
+
+ImageScreen.propTypes = {
+  navigation: PropTypes.object,
+  state: PropTypes.object,
+  favoriteImages: PropTypes.array,
+  addImageToFavorites: PropTypes.func
 }
 
 const mapStateToProps = state => {
