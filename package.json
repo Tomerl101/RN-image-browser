@@ -30,7 +30,7 @@
     "deliveryDate": "04/29/2019",
     "delay": false,
     "delayReason": "string",
-    "comments": "add dev dependencies using yarn"
+    "comments": "add dev dependencies using yarn. We encountered some difficulties when testing react-native-elments becuase the components are not completely visible to us "
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
