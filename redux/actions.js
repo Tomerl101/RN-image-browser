@@ -14,6 +14,7 @@ export const hydrateFavoriteImages = favoriteImages => ({
 })
 
 export function fetchImages(searchQuery) {
+  console.log('fetch->', searchQuery)
   return async dispatch => {
     dispatch({
       type: FETCH_IMAGES_START

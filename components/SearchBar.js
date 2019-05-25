@@ -4,12 +4,14 @@ import { connect } from 'react-redux'
 import { fetchImages } from '../redux/actions'
 import PropTypes from 'prop-types'
 
+import debounce from 'lodash/debounce'
 class MySearchBar extends React.Component {
   state = {
     searchQuery: ''
   }
 
   handleUpdateSearch = searchQuery => {
+    console.log('input->', searchQuery)
     this.setState({ searchQuery })
     this.props.onSearch(searchQuery)
   }
@@ -35,9 +37,9 @@ MySearchBar.propTypes = {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSearch: searchQuery => {
+    onSearch: debounce(searchQuery => {
       dispatch(fetchImages(searchQuery))
-    }
+    }, 500)
   }
 }
 
